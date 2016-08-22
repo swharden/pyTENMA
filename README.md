@@ -14,16 +14,21 @@ pyTENMA provides a Python 3 interface to access data from TENMA multimeters via 
  * data is in text file format and does not require commercial software to view
 
 ## Screenshots
-![](screenshot.jpg)
+![](pics/screenshot.jpg)
 The primary output is very simple. Inside [brackets] is the data the multimeter sends (with added spaces to improve readability). To the right are the correct values/measurements and units determined by parsing the string. Glance at the top of the code for a full description of what this string means (and what I still haven't figured out).
 
-![](logDemo.png)
+![](extras/logDemo.png)
 The included `logPlot.py` script demonstrates how to generate a graph from a recorded log file. The data shown here is recorded from the experiment pictured in the next image.
 
-![](experiment.jpg)
+![](pics/experiment.jpg)
 In this case I charged a 22uF capacitor in a breadboard with +5V and let it sit there for a long time. As the capacitor leaked its stored potential, the beautiful RC curve was captured by the TENMA multimeter.
 
 ## TENMA Multimeter Resources
 * PyroElectro has [a video demonstration](http://www.pyroelectro.com/tutorials/tenma_digital_multimeter/software.html) of the TENMA multimeter / PC link using their commercial software.
 * I developed this software for the TENMA 72-7750 but I assume most similar multimeters output the identical serial format, so I expect this software will work for multiple meters.
 * The [TENMA 72-7750 manual](http://www.farnell.com/datasheets/70028.pdf) is available online.
+
+## Serial Notes
+![](pics/hacking.jpg)
+I lost half a day because I couldn't figure out how to get Python to read these serial values. When the commercial program ran, data came out. When I used a serial sniffing program, I could see the packets. When I tried to interact with the serial port directly, I could never see any data. After a lot of probing (and wishing I had a logic analyzer on hand) I eventually figured out that you have to flip the RTS and DTR serial pins to either source of sink current properly. This is because the circuit in the IR receiver is passive (voltage wise) and "sucks" current from the serial port. Leaving them both high or both low won't allow the signal to come through. I figured out which pins needed to be in which states and hard-coded it into the python script. It seems obvious now, but it took me a while to realize.
+
