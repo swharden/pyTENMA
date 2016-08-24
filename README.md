@@ -1,6 +1,9 @@
 # pyTENMA
 **pyTENMA provides a simple Python interface to access data from TENMA multimeters via their serial connection.** Many TENMA multimeters have an IR transmitter on the back which allows an optically-isolated means to transmit data from the meter to the computer. However, the software that comes with the multimeter is extremely limited -- it's Windows only, closed-source, can't save log data automatically, the graph is not interactive and it's broken more often than not, and the output format is an excel spreadsheet and not a flat text file. Therefore, I wrote a python solution which listens to data arriving from the multimeter on the serial port, analyzes it, and saves it. I also included a demo spython script showing how to graph the data and either interact with the graph or save it as an image. TENMA multimeters are nice and I love their PC connection. I'm happy I can now interact with it on systems like my Raspberry Pi. 
 
+**SEE PROJECT PAGE FOR DETAILS:**
+* http://www.swharden.com/wp/2016-08-24-tenma-multimeter-serial-hack/
+
 ## Features
 * Single file `pyTENMA.py` program which does not need to be installed
 * Work on Windows, Linux, and MacOS
