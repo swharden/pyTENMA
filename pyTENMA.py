@@ -229,7 +229,7 @@ class pyTenma:
         print("I'm going to record values until you CTRL+C me!")
         values=[]
         try:
-            PT.connect()
+            self.connect()
             while True:
                 values.append(formatVal(self.getValue()))
                 if self.logFileName and len(values)>=10: # logging frequency
